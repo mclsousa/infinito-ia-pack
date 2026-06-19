@@ -24,8 +24,23 @@
     .hero-lead strong { color: var(--ink); font-weight: 600; }
     .hero-stats {
       font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
     }
+    .access-badge {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: #fef3ec; border: 1px solid #f5d5c0; border-radius: 14px;
+      padding: 16px 18px; margin-bottom: 28px;
+    }
+    .access-badge-icon {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700;
+    }
+    .access-badge strong {
+      display: block; font-size: 15px; color: var(--ink); margin-bottom: 4px;
+    }
+    .access-badge span { font-size: 13px; color: var(--muted); line-height: 1.45; }
 
     .pillars { display: grid; gap: 12px; margin-top: 8px; }
     .pillar {
@@ -59,7 +74,12 @@
     .pricing h2 { font-family: 'Fraunces', Georgia, serif; color: #fff; font-size: 22px; margin-bottom: 4px; }
     .price-old { text-decoration: line-through; color: rgba(255,255,255,0.4); font-size: 15px; }
     .price { font-family: 'Fraunces', Georgia, serif; font-size: 52px; font-weight: 300; margin: 6px 0; }
-    .price-note { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+    .price-note { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
+    .pricing-highlight {
+      display: inline-block; background: rgba(212,98,42,0.25); border: 1px solid rgba(212,98,42,0.45);
+      color: #ffd4bc; font-size: 13px; font-weight: 600;
+      padding: 10px 18px; border-radius: 100px; margin-bottom: 20px; line-height: 1.4;
+    }
     .cta {
       display: inline-block; background: var(--accent); color: #fff !important;
       text-decoration: none; font-size: 15px; font-weight: 600;
@@ -107,6 +127,14 @@
       </p>
       <p class="hero-stats">30 dias · 1 checklist · 6 situações do funil</p>
 
+      <div class="access-badge">
+        <div class="access-badge-icon">✉</div>
+        <div>
+          <strong>Acesso liberado na hora no seu e-mail</strong>
+          <span>Confirmou o Pix? O PDF completo chega automaticamente — sem esperar, sem criar conta.</span>
+        </div>
+      </div>
+
       <div class="pillars">
         <div class="pillar">
           <div class="pillar-icon">30</div>
@@ -152,7 +180,8 @@
       <h2>Acesso imediato ao sistema completo</h2>
       <p class="price-old">R$ 47</p>
       <p class="price">R$ 27</p>
-      <p class="price-note">Pix · PDF profissional no e-mail em minutos</p>
+      <p class="price-note">Pix · entrega automática no e-mail</p>
+      <p class="pricing-highlight">✓ Acesso liberado na hora — PDF no seu e-mail após o pagamento</p>
       <a class="cta" href="https://pay.cakto.com.br/37c4vf7_933986">Quero o sistema — R$ 27</a>
     </div>
 
