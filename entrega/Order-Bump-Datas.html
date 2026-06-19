@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Datas Comemorativas — Conteúdo Infinito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 0; }
+@page :first { margin: 0; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10pt;
+  line-height: 1.65;
+  color: #1a1a1a;
+  background: #fdfcfa;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* —— CAPA —— */
+.cover {
+  page-break-after: always;
+  padding: 18mm 22mm 20mm;
+  background: #fdfcfa;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: "";
+  position: absolute;
+  top: -80mm;
+  right: -60mm;
+  width: 200mm;
+  height: 200mm;
+  background: radial-gradient(circle, rgba(212,98,42,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-top { position: relative; z-index: 1; }
+.cover-line {
+  width: 40px;
+  height: 3px;
+  background: #d4622a;
+  border-radius: 2px;
+  margin-bottom: 10mm;
+}
+.cover-eyebrow {
+  font-size: 8.5pt;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 6mm;
+}
+.cover h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 42pt;
+  font-weight: 300;
+  line-height: 1.05;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 8mm;
+}
+.cover-tagline {
+  font-size: 12pt;
+  color: #6b6560;
+  max-width: 105mm;
+  line-height: 1.55;
+  font-weight: 400;
+}
+.cover-stats {
+  display: flex;
+  gap: 10mm;
+  margin-top: 10mm;
+  padding-top: 6mm;
+  border-top: 1px solid #e8e4df;
+}
+.cover-stat strong {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22pt;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1;
+}
+.cover-stat span {
+  font-size: 8pt;
+  color: #9c9690;
+  margin-top: 2mm;
+  display: block;
+}
+.cover-bottom {
+  position: relative;
+  z-index: 1;
+  font-size: 8pt;
+  color: #b5b0a8;
+  border-top: 1px solid #e8e4df;
+  padding-top: 4mm;
+  margin-top: 12mm;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* —— PÁGINAS INTERNAS —— */
+.page {
+  padding: 14mm 22mm 16mm;
+  background: #fdfcfa;
+}
+.page-flush { padding-top: 0; }
+.page-section { margin-top: 10mm; padding-top: 8mm; border-top: 1px solid #ebe7e2; }
+
+.page-label {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 4mm;
+}
+.page h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22pt;
+  font-weight: 400;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 4mm;
+  line-height: 1.2;
+}
+.page-lead {
+  font-size: 10.5pt;
+  color: #6b6560;
+  max-width: 130mm;
+  margin-bottom: 6mm;
+  line-height: 1.6;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+  margin: 5mm 0;
+}
+.step {
+  display: flex;
+  gap: 5mm;
+  align-items: flex-start;
+}
+.step-n {
+  flex-shrink: 0;
+  width: 8mm;
+  height: 8mm;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 8pt;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step p { font-size: 10pt; color: #3d3a36; padding-top: 1mm; }
+.step strong { color: #1a1a1a; }
+
+.tip-box {
+  background: #fff;
+  border: 1px solid #e8e4df;
+  border-radius: 10px;
+  padding: 4mm 5mm;
+  font-size: 9.5pt;
+  color: #6b6560;
+  margin-top: 5mm;
+}
+.tip-box strong { color: #1a1a1a; }
+
+/* Sumário */
+.toc { list-style: none; }
+.toc li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2.5mm 0;
+  border-bottom: 1px solid #ebe7e2;
+  font-size: 10pt;
+}
+.toc li.head {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9c9690;
+  border-bottom: none;
+  padding-top: 4mm;
+  padding-bottom: 1.5mm;
+}
+.toc li.head:first-child { padding-top: 0; }
+.toc .count { color: #d4622a; font-weight: 600; font-size: 9pt; }
+
+/* Abertura de módulo */
+.mod-page {
+  page-break-before: always;
+  padding: 18mm 22mm;
+  min-height: 55mm;
+  background: #1a1a1a;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+.mod-page::after {
+  content: attr(data-num);
+  position: absolute;
+  right: 10mm;
+  bottom: -15mm;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 120pt;
+  font-weight: 300;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+.mod-page .mod-idx {
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 4mm;
+}
+.mod-page h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 26pt;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 4mm;
+  line-height: 1.15;
+}
+.mod-page p {
+  font-size: 10pt;
+  color: rgba(255,255,255,0.65);
+  max-width: 120mm;
+  line-height: 1.55;
+}
+
+/* Prompt */
+.prompts-wrap { padding: 8mm 22mm 22mm; background: #fdfcfa; }
+
+.prompt {
+  page-break-inside: avoid;
+  background: #fff;
+  border: 1px solid #e8e4df;
+  border-radius: 14px;
+  padding: 6mm 7mm;
+  margin-bottom: 6mm;
+  box-shadow: 0 1px 3px rgba(26,26,26,0.04);
+}
+.prompt-top {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  margin-bottom: 3mm;
+}
+.prompt-num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 18pt;
+  font-weight: 500;
+  color: #d4622a;
+  line-height: 1;
+  min-width: 10mm;
+}
+.prompt-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.35;
+}
+.prompt-when {
+  font-size: 8.5pt;
+  color: #9c9690;
+  margin-bottom: 4mm;
+  padding-left: 14mm;
+}
+.prompt-code {
+  background: #f7f5f2;
+  border-radius: 8px;
+  padding: 4mm 5mm;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 7.8pt;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  color: #2d2a26;
+  border: 1px solid #ebe7e2;
+}
+.prompt-hint {
+  margin-top: 3mm;
+  padding-left: 14mm;
+  font-size: 8pt;
+  color: #9c9690;
+}
+
+/* Anexos */
+.annex-wrap { padding: 0 22mm 22mm; background: #fdfcfa; }
+.week { margin-bottom: 8mm; page-break-inside: avoid; }
+.week-label {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 2mm;
+}
+.week-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13pt;
+  font-weight: 400;
+  margin-bottom: 4mm;
+  color: #1a1a1a;
+}
+.table-wrap { overflow: hidden; border-radius: 10px; border: 1px solid #e8e4df; }
+table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+th {
+  background: #f7f5f2;
+  text-align: left;
+  padding: 2.5mm 3.5mm;
+  font-weight: 600;
+  font-size: 7.5pt;
+  color: #6b6560;
+  border-bottom: 1px solid #e8e4df;
+}
+td {
+  padding: 2.5mm 3.5mm;
+  border-bottom: 1px solid #f0ece7;
+  color: #3d3a36;
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+
+.guia-block { margin-bottom: 8mm; page-break-inside: avoid; }
+.guia-block h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 12pt;
+  font-weight: 400;
+  margin-bottom: 3mm;
+  color: #1a1a1a;
+}
+.guia-block p { font-size: 9.5pt; color: #6b6560; margin-bottom: 2mm; line-height: 1.6; }
+.checks { list-style: none; }
+.checks li {
+  font-size: 9.5pt;
+  color: #6b6560;
+  padding: 2mm 0 2mm 6mm;
+  position: relative;
+  border-bottom: 1px solid #f0ece7;
+}
+.checks li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 3.5mm;
+  width: 3mm; height: 3mm;
+  border-radius: 1px;
+  border: 1.5px solid #d4622a;
+}
+
+/* Fechamento */
+.end {
+  page-break-before: always;
+  padding: 18mm 22mm;
+  background: #fdfcfa;
+}
+.end h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 28pt;
+  font-weight: 300;
+  margin-bottom: 4mm;
+  letter-spacing: -0.02em;
+}
+.end-lead { font-size: 11pt; color: #6b6560; max-width: 120mm; margin-bottom: 8mm; }
+.end-items { list-style: none; }
+.end-items li {
+  padding: 3mm 0;
+  border-bottom: 1px solid #ebe7e2;
+  font-size: 10pt;
+  color: #3d3a36;
+  display: flex;
+  gap: 4mm;
+}
+.end-items li::before {
+  content: "→";
+  color: #d4622a;
+  flex-shrink: 0;
+}
+.end-footer {
+  margin-top: 12mm;
+  font-size: 8pt;
+  color: #b5b0a8;
+}
+
+@media print {
+  .mod-page, .prompt, th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+</style>
+</head>
+<body>
+
+    <header class="cover">
+      <div class="cover-top">
+        <div class="cover-line"></div>
+        <p class="cover-eyebrow">Guia de comandos</p>
+        <h1>Conteúdo<br>Infinito</h1>
+        <p class="cover-tagline">Comandos para campanhas sazonais — Dia das Mães, Black Friday, Natal e mais.</p>
+        <div class="cover-stats"><div class="cover-stat"><strong>15</strong><span>comandos</span></div><div class="cover-stat"><strong>12+</strong><span>datas</span></div></div>
+      </div>
+      <div class="cover-bottom">
+        <span>Material extra</span>
+        <span>Complemento ao guia principal</span>
+      </div>
+    </header>
+<div class="page page-flush">
+  <p class="page-label">Extra</p>
+  <h2>Campanhas por data</h2>
+  <p class="page-lead">Use conforme o calendário comercial. Cada comando gera roteiro, legenda e mensagens.</p>
+</div>
+<div class="prompts-wrap">
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">1</span>
+            <h3 class="prompt-title">Dia das Mães</h3>
+          </div>
+          <p class="prompt-when">2–3 semanas antes do segundo domingo de maio.</p>
+          <div class="prompt-code">Você é copywriter de campanhas sazonais para pequenos negócios no Brasil.
+
+Meu nicho: [NICHO]
+Produto/serviço para presente: [O QUE VENDO]
+Preço: [R$]
+Diferencial: [POR QUE COMPRAR COMIGO]
+
+Crie campanha completa para Dia das Mães:
+1. Roteiro Reels 30 segundos (gancho + emoção + CTA)
+2. Legenda para feed (máx. 200 palavras, tom carinhoso)
+3. Sequência de 3 Stories
+4. Mensagem para broadcast WhatsApp (máx. 5 linhas)
+
+Tom: carinho autêntico, não comercial agressivo.
+Inclua sugestão de prazo limite para encomendas.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">2</span>
+            <h3 class="prompt-title">Dia dos Namorados</h3>
+          </div>
+          <p class="prompt-when">Início de junho (12 de junho).</p>
+          <div class="prompt-code">Crie campanha de Dia dos Namorados para [NICHO].
+Produto: [NOME] | Preço: [R$] | Público: [PERFIL]
+
+Inclua:
+- Reels 30s (gancho + oferta + CTA)
+- Legenda emotiva
+- 3 Stories
+- Ângulo alternativo: presente para amiga, mãe, ou &quot;presente para mim&quot;
+
+Tom: leve, romântico ou divertido conforme o nicho.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">3</span>
+            <h3 class="prompt-title">Black Friday</h3>
+          </div>
+          <p class="prompt-when">Última semana de novembro.</p>
+          <div class="prompt-code">Você é estrategista de Black Friday para MEI no Brasil.
+
+Negócio: [NICHO]
+Oferta real: [DESCONTO OU BÔNUS — sem exagerar]
+Estoque ou vagas limitadas: [NÚMERO REAL]
+Preço de: [R$] por: [R$]
+
+Crie:
+1. Sequência de 5 Stories (contagem + prova + CTA)
+2. Roteiro Reels anúncio 45s
+3. Legenda com bullets do que está incluso
+4. Mensagem WhatsApp para lista de clientes
+
+Tom: urgência honesta. Não use &quot;maior desconto da história&quot; se não for verdade.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">4</span>
+            <h3 class="prompt-title">Natal / Fim de Ano</h3>
+          </div>
+          <p class="prompt-when">Novembro–dezembro.</p>
+          <div class="prompt-code">Campanha de Natal para [NICHO].
+Produto: [NOME]
+Prazo final de encomendas: [DATA]
+Entrega/retirada: [COMO FUNCIONA]
+
+Roteiro Reels, legenda, ideia de embalagem ou brinde natalino, CTA para encomendas antecipadas.
+Tom: acolhedor, planejamento com antecedência.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">5</span>
+            <h3 class="prompt-title">Volta às Aulas</h3>
+          </div>
+          <p class="prompt-when">Janeiro e julho.</p>
+          <div class="prompt-code">Conteúdo e oferta de Volta às Aulas para [NICHO].
+Exemplos de nicho: papelaria, moda infantil, marmitas, cursos.
+
+3 ideias de Reels, legenda, promoção sugerida com prazo.
+Público: pais e estudantes.
+CTA: link ou WhatsApp.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">6</span>
+            <h3 class="prompt-title">Dia Internacional da Mulher (8 de março)</h3>
+          </div>
+          <p class="prompt-when">Primeira semana de março.</p>
+          <div class="prompt-code">Campanha 8 de Março para [NICHO].
+Ângulo: empoderamento + oferta (se fizer sentido para o negócio).
+
+Reels 45s, legenda, 3 Stories.
+Evite conteúdo vazio — traga valor para mulheres empreendedoras ou clientes.
+Se for desconto, justifique com carinho, não exploração da data.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">7</span>
+            <h3 class="prompt-title">Dia do Consumidor (15 de março)</h3>
+          </div>
+          <p class="prompt-when">10–15 de março.</p>
+          <div class="prompt-code">Oferta Dia do Consumidor para [NICHO].
+Produto: [NOME] | Condição: [DESCONTO OU BRINDE]
+
+Reels 30s, legenda, 3 frases para Stories com contagem regressiva.
+CTA claro com prazo de 24–48h.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">8</span>
+            <h3 class="prompt-title">Páscoa</h3>
+          </div>
+          <p class="prompt-when">3–4 semanas antes da Páscoa.</p>
+          <div class="prompt-code">Campanha de Páscoa para [NICHO — confeitaria, presentes, moda infantil].
+Produto: [NOME]
+Prazo de encomenda: [DATA]
+
+Roteiro Reels, legenda, mensagem para clientes que compraram no Natal passado.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">9</span>
+            <h3 class="prompt-title">Dia das Crianças</h3>
+          </div>
+          <p class="prompt-when">Outubro (12 de outubro).</p>
+          <div class="prompt-code">Conteúdo Dia das Crianças para [NICHO].
+Público: pais de crianças [IDADE].
+
+3 roteiros Reels, legenda, sugestão de promoção família ou kit.
+Tom: divertido, seguro, familiar.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">10</span>
+            <h3 class="prompt-title">Dia dos Pais</h3>
+          </div>
+          <p class="prompt-when">Segunda quinzena de agosto.</p>
+          <div class="prompt-code">Campanha Dia dos Pais para [NICHO].
+Produto presenteável: [NOME] | Preço: [R$]
+
+Reels, legenda, copy WhatsApp.
+Tom: gratidão e praticidade (presente útil).</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">11</span>
+            <h3 class="prompt-title">Carnaval</h3>
+          </div>
+          <p class="prompt-when">Janeiro–fevereiro.</p>
+          <div class="prompt-code">Conteúdo de Carnaval para [NICHO].
+Ângulo escolhido: [promoção / humor / pausa / retomada pós-folia]
+
+2 roteiros Reels, Stories, legenda.
+Mencione se o negócio abre ou fecha no feriado — transparência gera confiança.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">12</span>
+            <h3 class="prompt-title">Ano Novo / Metas</h3>
+          </div>
+          <p class="prompt-when">Dezembro–janeiro.</p>
+          <div class="prompt-code">Conteúdo de Ano Novo para [NICHO].
+Ângulo: metas, recomeço, planejamento.
+
+Roteiro &quot;como [SEU SERVIÇO] pode ajudar em [ANO]&quot; ou retrospectiva do negócio.
+Reels + legenda reflexiva + CTA suave.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">13</span>
+            <h3 class="prompt-title">Dia do Cliente</h3>
+          </div>
+          <p class="prompt-when">15 de setembro.</p>
+          <div class="prompt-code">Campanha Dia do Cliente para [NICHO].
+Ação: [desconto / brinde / sorteio / agradecimento sem desconto]
+
+Reels agradecendo clientes, legenda, ideia de repost de depoimentos.
+Tom: gratidão genuína.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">14</span>
+            <h3 class="prompt-title">Halloween</h3>
+          </div>
+          <p class="prompt-when">Outubro (nichos criativos: doces, moda, festas, beleza artística).</p>
+          <div class="prompt-code">Conteúdo Halloween para [NICHO].
+
+Roteiro criativo 30–45s, legenda, ideia visual.
+Tom: divertido. Se público for família com crianças, evite terror.</div>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">15</span>
+            <h3 class="prompt-title">Aniversário da Loja</h3>
+          </div>
+          <p class="prompt-when">Data de fundação do negócio.</p>
+          <div class="prompt-code">Meu negócio completa [X] anos em [DATA].
+Nicho: [NICHO]
+Oferta especial: [DESCONTO / BRINDE / SORTEIO]
+
+Roteiro storytelling da história + oferta, legenda, sequência Stories &quot;bastidores ao longo dos anos&quot;.
+Tom: celebração com o cliente, não só liquidação.</div>
+        </article></div>
+</body>
+</html>

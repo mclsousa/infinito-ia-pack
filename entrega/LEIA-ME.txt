@@ -1,0 +1,14 @@
+CONTEÚDO INFINITO — Pacote de entrega
+=====================================
+
+Arquivos:
+  Conteudo-Infinito-IA.pdf    Sistema principal (calendário 30 dias + checklist + comandos)
+  Order-Bump-Datas.pdf        Anexo sazonal (15 comandos — se comprou o extra)
+  *.html                      Mesmo conteúdo para abrir no navegador
+
+Por onde começar:
+  1. Anexo A — Calendário de 30 dias
+  2. Anexo B — Checklist antes de publicar
+  3. Comandos 7, 19 e 41 (gancho, legenda, planejamento)
+
+Nota: a numeração dos dias do calendário é independente da numeração dos comandos.

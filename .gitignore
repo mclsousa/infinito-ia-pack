@@ -1,0 +1,14 @@
+# Generated binaries (regenerate: python scripts/gerar-pdf.py)
+entrega/*.pdf
+entrega/*.zip
+
+# Python
+__pycache__/
+*.pyc
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db

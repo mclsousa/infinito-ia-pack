@@ -1,0 +1,46 @@
+id,categoria,nome,dor_resolvida,status,testado
+1,Ganchos e ideias,10 ideias de video para a semana,Nao sei o que postar esta semana,pronto,sim
+2,Ganchos e ideias,Trend adaptada ao meu nicho,Nao sei usar trends do TikTok,pronto,nao
+3,Ganchos e ideias,POV que viraliza no feed,Quero formato que prende atencao,pronto,nao
+4,Ganchos e ideias,Resposta a comentario virgem,Comentarios pedem conteudo e nao sei responder,pronto,nao
+5,Ganchos e ideias,Desafio de 7 dias de conteudo,Preciso de serie para engajar,pronto,nao
+6,Ganchos e ideias,Conteudo polemico educativo,Quero debate sem ofender,pronto,nao
+7,Ganchos e ideias,Hook com pergunta que para o scroll,Gancho fraco nos primeiros 3 segundos,pronto,sim
+8,Ganchos e ideias,Lista numerada que gera salvamentos,Quero conteudo util e compartilhavel,pronto,sim
+9,Roteiros TikTok/Reels,Antes e depois 45 segundos,Quero mostrar transformacao do cliente,pronto,nao
+10,Roteiros TikTok/Reels,Tutorial rapido 60 segundos,Preciso ensinar algo em 1 minuto,pronto,nao
+11,Roteiros TikTok/Reels,Storytelling pessoal,Quero conectar emocionalmente,pronto,nao
+12,Roteiros TikTok/Reels,Bastidores do negocio,Quero humanizar a marca,pronto,nao
+13,Roteiros TikTok/Reels,Prova social com depoimento,Preciso de roteiro para cliente falar,pronto,nao
+14,Roteiros TikTok/Reels,Comparacao eu vs concorrente,Quero diferenciar sem atacar,pronto,nao
+15,Roteiros TikTok/Reels,Erro comum do meu publico,Quero educar com entretenimento,pronto,nao
+16,Roteiros TikTok/Reels,Unboxing ou apresentacao de produto,Preciso vender sem parecer propaganda,pronto,nao
+17,Roteiros TikTok/Reels,Dia na vida do empreendedor,Quero conteudo autentico,pronto,nao
+18,Roteiros TikTok/Reels,Reacao a tendencia do nicho,Quero surfar hype com opiniao,pronto,nao
+19,Legendas e copy,Legenda vendedora curta,Legenda nao converte,pronto,sim
+20,Legendas e copy,Carrossel 5 slides educativo,Preciso de texto para cada slide,pronto,nao
+21,Legendas e copy,Bio otimizada Instagram/TikTok,Bio nao explica o que vendo,pronto,nao
+22,Legendas e copy,CTA para WhatsApp,Preciso levar para conversa privada,pronto,nao
+23,Legendas e copy,Legenda com storytelling,Legendas genericas demais,pronto,nao
+24,Legendas e copy,Texto para capa de destaque,Destaques desorganizados,pronto,nao
+25,Legendas e copy,Legenda para foto estatica,Foto boa legenda fraca,pronto,nao
+26,Legendas e copy,Copy para Stories sequencia,Stories sem narrativa,pronto,nao
+27,Conteudo educativo,Mitos vs verdades do nicho,Publico tem crencas erradas,pronto,nao
+28,Conteudo educativo,3 erros que meu cliente comete,Quero posicionar como autoridade,pronto,nao
+29,Conteudo educativo,Dica rapida do dia,Preciso de conteudo leve diario,pronto,nao
+30,Conteudo educativo,FAQ em formato de post,Mesmas perguntas nas DMs,pronto,nao
+31,Conteudo educativo,Checklist educativo,Quero conteudo que salvam,pronto,nao
+32,Conteudo educativo,Comparativo de opcoes,Ajudar cliente a decidir,pronto,nao
+33,Conteudo educativo,Passo a passo numerado,Explicar processo complexo,pronto,nao
+34,Vendas e conversao,Oferta relampago 24h,Preciso vender rapido,pronto,nao
+35,Vendas e conversao,Texto de depoimento para repost,Cliente elogiou mas nao sei formatar,pronto,nao
+36,Vendas e conversao,DM de follow-up,Lead sumiu depois do contato,pronto,nao
+37,Vendas e conversao,Quebra de objecao preco,Cliente acha caro,pronto,nao
+38,Vendas e conversao,Anuncio de vaga limitada,Quero escassez real,pronto,nao
+39,Vendas e conversao,Script de live de vendas,Quero vender ao vivo,pronto,nao
+40,Vendas e conversao,Recuperacao de carrinho/contato,Quase comprou e parou,pronto,nao
+41,Organizacao,Calendario semanal de conteudo,Posto sem planejamento,pronto,sim
+42,Organizacao,Brainstorm 30 ideias em 10 min,Bloqueio criativo total,pronto,nao
+43,Organizacao,Analise do que postar esta semana,Nao sei priorizar temas,pronto,nao
+44,Organizacao,Reaproveitamento 1 conteudo 5 formatos,Produzo muito gasto tempo,pronto,nao
+45,Organizacao,Rotina de criacao em 1 hora/dia,Conteudo toma o dia inteiro,pronto,nao

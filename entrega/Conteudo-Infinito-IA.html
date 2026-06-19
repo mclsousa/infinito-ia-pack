@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conteúdo Infinito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 0; }
+@page :first { margin: 0; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10pt;
+  line-height: 1.65;
+  color: #1a1a1a;
+  background: #fdfcfa;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* —— CAPA —— */
+.cover {
+  page-break-after: always;
+  padding: 18mm 22mm 20mm;
+  background: #fdfcfa;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: "";
+  position: absolute;
+  top: -80mm;
+  right: -60mm;
+  width: 200mm;
+  height: 200mm;
+  background: radial-gradient(circle, rgba(212,98,42,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-top { position: relative; z-index: 1; }
+.cover-line {
+  width: 40px;
+  height: 3px;
+  background: #d4622a;
+  border-radius: 2px;
+  margin-bottom: 10mm;
+}
+.cover-eyebrow {
+  font-size: 8.5pt;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 6mm;
+}
+.cover h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 42pt;
+  font-weight: 300;
+  line-height: 1.05;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 8mm;
+}
+.cover-tagline {
+  font-size: 12pt;
+  color: #6b6560;
+  max-width: 105mm;
+  line-height: 1.55;
+  font-weight: 400;
+}
+.cover-stats {
+  display: flex;
+  gap: 10mm;
+  margin-top: 10mm;
+  padding-top: 6mm;
+  border-top: 1px solid #e8e4df;
+}
+.cover-stat strong {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22pt;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1;
+}
+.cover-stat span {
+  font-size: 8pt;
+  color: #9c9690;
+  margin-top: 2mm;
+  display: block;
+}
+.cover-bottom {
+  position: relative;
+  z-index: 1;
+  font-size: 8pt;
+  color: #b5b0a8;
+  border-top: 1px solid #e8e4df;
+  padding-top: 4mm;
+  margin-top: 12mm;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* —— PÁGINAS INTERNAS —— */
+.page {
+  padding: 14mm 22mm 16mm;
+  background: #fdfcfa;
+}
+.page-flush { padding-top: 0; }
+.page-section { margin-top: 10mm; padding-top: 8mm; border-top: 1px solid #ebe7e2; }
+
+.page-label {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 4mm;
+}
+.page h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22pt;
+  font-weight: 400;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 4mm;
+  line-height: 1.2;
+}
+.page-lead {
+  font-size: 10.5pt;
+  color: #6b6560;
+  max-width: 130mm;
+  margin-bottom: 6mm;
+  line-height: 1.6;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+  margin: 5mm 0;
+}
+.step {
+  display: flex;
+  gap: 5mm;
+  align-items: flex-start;
+}
+.step-n {
+  flex-shrink: 0;
+  width: 8mm;
+  height: 8mm;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 8pt;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step p { font-size: 10pt; color: #3d3a36; padding-top: 1mm; }
+.step strong { color: #1a1a1a; }
+
+.tip-box {
+  background: #fff;
+  border: 1px solid #e8e4df;
+  border-radius: 10px;
+  padding: 4mm 5mm;
+  font-size: 9.5pt;
+  color: #6b6560;
+  margin-top: 5mm;
+}
+.tip-box strong { color: #1a1a1a; }
+
+/* Sumário */
+.toc { list-style: none; }
+.toc li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2.5mm 0;
+  border-bottom: 1px solid #ebe7e2;
+  font-size: 10pt;
+}
+.toc li.head {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9c9690;
+  border-bottom: none;
+  padding-top: 4mm;
+  padding-bottom: 1.5mm;
+}
+.toc li.head:first-child { padding-top: 0; }
+.toc .count { color: #d4622a; font-weight: 600; font-size: 9pt; }
+
+/* Abertura de módulo */
+.mod-page {
+  page-break-before: always;
+  padding: 18mm 22mm;
+  min-height: 55mm;
+  background: #1a1a1a;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+.mod-page::after {
+  content: attr(data-num);
+  position: absolute;
+  right: 10mm;
+  bottom: -15mm;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 120pt;
+  font-weight: 300;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+.mod-page .mod-idx {
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 4mm;
+}
+.mod-page h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 26pt;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 4mm;
+  line-height: 1.15;
+}
+.mod-page p {
+  font-size: 10pt;
+  color: rgba(255,255,255,0.65);
+  max-width: 120mm;
+  line-height: 1.55;
+}
+
+/* Prompt */
+.prompts-wrap { padding: 8mm 22mm 22mm; background: #fdfcfa; }
+
+.prompt {
+  page-break-inside: avoid;
+  background: #fff;
+  border: 1px solid #e8e4df;
+  border-radius: 14px;
+  padding: 6mm 7mm;
+  margin-bottom: 6mm;
+  box-shadow: 0 1px 3px rgba(26,26,26,0.04);
+}
+.prompt-top {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  margin-bottom: 3mm;
+}
+.prompt-num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 18pt;
+  font-weight: 500;
+  color: #d4622a;
+  line-height: 1;
+  min-width: 10mm;
+}
+.prompt-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.35;
+}
+.prompt-when {
+  font-size: 8.5pt;
+  color: #9c9690;
+  margin-bottom: 4mm;
+  padding-left: 14mm;
+}
+.prompt-code {
+  background: #f7f5f2;
+  border-radius: 8px;
+  padding: 4mm 5mm;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 7.8pt;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  color: #2d2a26;
+  border: 1px solid #ebe7e2;
+}
+.prompt-hint {
+  margin-top: 3mm;
+  padding-left: 14mm;
+  font-size: 8pt;
+  color: #9c9690;
+}
+
+/* Anexos */
+.annex-wrap { padding: 0 22mm 22mm; background: #fdfcfa; }
+.week { margin-bottom: 8mm; page-break-inside: avoid; }
+.week-label {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4622a;
+  margin-bottom: 2mm;
+}
+.week-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13pt;
+  font-weight: 400;
+  margin-bottom: 4mm;
+  color: #1a1a1a;
+}
+.table-wrap { overflow: hidden; border-radius: 10px; border: 1px solid #e8e4df; }
+table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+th {
+  background: #f7f5f2;
+  text-align: left;
+  padding: 2.5mm 3.5mm;
+  font-weight: 600;
+  font-size: 7.5pt;
+  color: #6b6560;
+  border-bottom: 1px solid #e8e4df;
+}
+td {
+  padding: 2.5mm 3.5mm;
+  border-bottom: 1px solid #f0ece7;
+  color: #3d3a36;
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+
+.guia-block { margin-bottom: 8mm; page-break-inside: avoid; }
+.guia-block h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 12pt;
+  font-weight: 400;
+  margin-bottom: 3mm;
+  color: #1a1a1a;
+}
+.guia-block p { font-size: 9.5pt; color: #6b6560; margin-bottom: 2mm; line-height: 1.6; }
+.checks { list-style: none; }
+.checks li {
+  font-size: 9.5pt;
+  color: #6b6560;
+  padding: 2mm 0 2mm 6mm;
+  position: relative;
+  border-bottom: 1px solid #f0ece7;
+}
+.checks li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 3.5mm;
+  width: 3mm; height: 3mm;
+  border-radius: 1px;
+  border: 1.5px solid #d4622a;
+}
+
+/* Fechamento */
+.end {
+  page-break-before: always;
+  padding: 18mm 22mm;
+  background: #fdfcfa;
+}
+.end h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 28pt;
+  font-weight: 300;
+  margin-bottom: 4mm;
+  letter-spacing: -0.02em;
+}
+.end-lead { font-size: 11pt; color: #6b6560; max-width: 120mm; margin-bottom: 8mm; }
+.end-items { list-style: none; }
+.end-items li {
+  padding: 3mm 0;
+  border-bottom: 1px solid #ebe7e2;
+  font-size: 10pt;
+  color: #3d3a36;
+  display: flex;
+  gap: 4mm;
+}
+.end-items li::before {
+  content: "→";
+  color: #d4622a;
+  flex-shrink: 0;
+}
+.end-footer {
+  margin-top: 12mm;
+  font-size: 8pt;
+  color: #b5b0a8;
+}
+
+@media print {
+  .mod-page, .prompt, th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+</style>
+</head>
+<body>
+
+
+    <header class="cover">
+      <div class="cover-top">
+        <div class="cover-line"></div>
+        <p class="cover-eyebrow">Guia de comandos</p>
+        <h1>Conteúdo<br>Infinito</h1>
+        <p class="cover-tagline">Sistema de produção de conteúdo: calendário de 30 dias, checklist de revisão e comandos por situação.</p>
+        <div class="cover-stats"><div class="cover-stat"><strong>30</strong><span>dias planejados</span></div><div class="cover-stat"><strong>1</strong><span>checklist anti-genérico</span></div><div class="cover-stat"><strong>6</strong><span>etapas do funil</span></div></div>
+      </div>
+      <div class="cover-bottom">
+        <span>Edição 2026</span>
+        <span>Inclui biblioteca de comandos · ChatGPT grátis</span>
+      </div>
+    </header>
+
+<div class="page">
+  <p class="page-label">Introdução</p>
+  <h2>Como usar</h2>
+  <p class="page-lead">Este material é um sistema de três partes: calendário (o quê postar), checklist (como revisar) e comandos (como executar cada situação).</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><p><strong>Calendário</strong> — use o Anexo A para saber o tema de cada dia.</p></div>
+    <div class="step"><div class="step-n">2</div><p><strong>Comando</strong> — abra a seção da sua necessidade e preencha os campos do seu negócio.</p></div>
+    <div class="step"><div class="step-n">3</div><p><strong>Checklist</strong> — revise com o Anexo B antes de publicar.</p></div>
+  </div>
+  <div class="tip-box"><strong>Importante:</strong> a IA gera rascunho. O checklist existe para o conteúdo não parecer genérico.</div>
+
+  <div class="page-section">
+    <p class="page-label">Índice</p>
+    <h2>O que tem aqui</h2>
+    <ul class="toc"><li class="head">Parte 1</li><li><span>Ganchos e ideias</span><span class="count">8</span></li><li class="head">Parte 2</li><li><span>Roteiros para vídeo</span><span class="count">10</span></li><li class="head">Parte 3</li><li><span>Legendas e copy</span><span class="count">8</span></li><li class="head">Parte 4</li><li><span>Conteúdo educativo</span><span class="count">7</span></li><li class="head">Parte 5</li><li><span>Vendas e conversão</span><span class="count">7</span></li><li class="head">Parte 6</li><li><span>Organização</span><span class="count">5</span></li><li class="head">Anexos</li><li><span>Calendário editorial — 30 dias</span><span class="count">A</span></li><li><span>Protocolo de revisão</span><span class="count">B</span></li></ul>
+  </div>
+</div>
+
+<div class="prompts-wrap">
+            <div class="mod-page" data-num="01">
+              <p class="mod-idx">Parte 1</p>
+              <h2>Ganchos e ideias</h2>
+              <p>Formatos de abertura, tendências e ideias de conteúdo.</p>
+            </div>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">01</span>
+            <h3 class="prompt-title">10 ideias de vídeo para a semana</h3>
+          </div>
+          <p class="prompt-when">Segunda-feira ou quando estiver sem ideias para a semana.</p>
+          <div class="prompt-code">Você é estrategista de conteúdo para redes sociais no Brasil.
+
+Meu nicho: [DESCREVA SEU NEGÓCIO — ex: confeitaria, manicure, loja de roupas]
+Meu público: [IDADE, GÊNERO, DOR PRINCIPAL]
+Objetivo da semana: [vender / engajar / atrair seguidores / educar]
+
+Crie 10 ideias de vídeos para TikTok e Instagram Reels, uma para cada dia útil.
+
+Para cada ideia inclua:
+- Título do vídeo (gancho)
+- Formato (tutorial, POV, antes/depois, lista, etc.)
+- Roteiro resumido em 3 linhas
+- CTA sugerido
+
+Tom: [direto / descontraído / educativo]
+Evite ideias genéricas. Foque em dores reais do meu público.</div>
+          <p class="prompt-hint">Peça &quot;mais 5 ideias&quot; se não gostar das primeiras.</p>
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">02</span>
+            <h3 class="prompt-title">Trend adaptada ao meu nicho</h3>
+          </div>
+          <p class="prompt-when">Quando uma trend está viral no TikTok e você quer adaptar sem parecer forçado.</p>
+          <div class="prompt-code">Você é criador de conteúdo viral para TikTok no Brasil.
+
+Trend atual: [DESCREVA A TREND — ex: áudio X, formato POV, transição antes/depois]
+Meu nicho: [SEU NEGÓCIO]
+Meu produto/serviço principal: [O QUE VOCÊ VENDE]
+
+Adapte essa trend para o meu nicho de forma natural e autêntica.
+
+Entregue:
+1. Como gravar o vídeo (passo a passo)
+2. Texto na tela sugerido
+3. Legenda com hashtags
+4. Por que isso pode funcionar para meu público
+
+Não force a trend se não fizer sentido — sugira uma variação criativa.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">03</span>
+            <h3 class="prompt-title">POV que viraliza no feed</h3>
+          </div>
+          <p class="prompt-when">Para criar vídeos no formato POV (point of view) que geram identificação.</p>
+          <div class="prompt-code">Você é roteirista de TikTok especializado em vídeos POV virais.
+
+Meu nicho: [NICHO]
+Dor do meu cliente: [PROBLEMA QUE ELE VIVE]
+Solução que eu ofereço: [SEU PRODUTO/SERVIÇO]
+
+Crie 3 roteiros de vídeo POV de 30–45 segundos.
+
+Estrutura de cada um:
+- Texto na tela (primeiros 3 segundos)
+- Desenvolvimento (situação que o público se identifica)
+- Virada (como minha solução entra)
+- CTA final
+
+Tom: conversa de amigo, linguagem brasileira informal mas profissional.
+Inclua sugestão de áudio/trend se aplicável.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">04</span>
+            <h3 class="prompt-title">Resposta a comentário (vídeo resposta)</h3>
+          </div>
+          <p class="prompt-when">Quando alguém comenta pedindo dica, preço ou explicação — transforme em conteúdo.</p>
+          <div class="prompt-code">Você é estrategista de conteúdo para TikTok.
+
+Comentário que recebi: &quot;[COLE O COMENTÁRIO AQUI]&quot;
+Meu nicho: [NICHO]
+Minha oferta: [O QUE VENDO]
+
+Transforme essa pergunta em um vídeo de resposta de 45–60 segundos.
+
+Entregue:
+1. Gancho para abrir o vídeo (citando o comentário)
+2. Roteiro completo com falas
+3. Texto na tela
+4. Legenda com CTA
+
+Objetivo: educar, gerar autoridade e [vender / agendar / direcionar para DM].</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">05</span>
+            <h3 class="prompt-title">Desafio de 7 dias de conteúdo</h3>
+          </div>
+          <p class="prompt-when">Para criar uma série que aumenta engajamento e seguidores.</p>
+          <div class="prompt-code">Você é especialista em séries de conteúdo para Instagram e TikTok.
+
+Meu nicho: [NICHO]
+Nome do desafio: [ex: 7 dias organizando suas finanças / 7 dias de receitas fáceis]
+Público: [DESCREVA]
+
+Crie um desafio de 7 dias com:
+- Nome chamativo do desafio
+- Regra simples para o público participar
+- Tema de cada dia (Dia 1 a Dia 7)
+- Gancho de cada vídeo
+- Hashtag do desafio
+- CTA para marcar amigos ou comentar
+
+Foco em conteúdo que gera comentários e salvamentos.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">06</span>
+            <h3 class="prompt-title">Conteúdo polêmico educativo</h3>
+          </div>
+          <p class="prompt-when">Quando quer gerar debate e alcance sem ofender ou espalhar desinformação.</p>
+          <div class="prompt-code">Você é copywriter de redes sociais com tom equilibrado.
+
+Meu nicho: [NICHO]
+Opinião que quero defender: [SUA POSIÇÃO SOBRE ALGO DO SEU MERCADO]
+Público: [QUEM VAI VER]
+
+Crie um roteiro de Reels de 60 segundos no formato &quot;unpopular opinion&quot; ou &quot;a verdade que ninguém fala&quot;.
+
+Regras:
+- Seja firme mas respeitoso
+- Traga argumento educativo, não só choque
+- Evite atacar pessoas
+- Termine com CTA para comentar opinião
+
+Inclua legenda e 5 hashtags de nicho.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">07</span>
+            <h3 class="prompt-title">Hook com pergunta que para o scroll</h3>
+          </div>
+          <p class="prompt-when">Quando o vídeo não está retendo nos primeiros 3 segundos.</p>
+          <div class="prompt-code">Você é especialista em ganchos virais para TikTok e Reels.
+
+Meu nicho: [NICHO]
+Tema do vídeo: [SOBRE O QUE É O VÍDEO]
+Público: [PERFIL DO CLIENTE]
+
+Crie 10 opções de gancho para os primeiros 3 segundos do vídeo.
+
+Formatos variados:
+- Pergunta provocativa
+- &quot;Pare de fazer X se você quer Y&quot;
+- &quot;Ninguém te conta que...&quot;
+- Número + promessa (&quot;3 erros que...&quot;)
+- POV
+
+Para cada gancho, diga qual emoção ele ativa (curiosidade, medo, desejo, identificação).
+Indique o melhor gancho e explique por quê.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">08</span>
+            <h3 class="prompt-title">Lista numerada que gera salvamentos</h3>
+          </div>
+          <p class="prompt-when">Para conteúdo utilitário que as pessoas salvam e compartilham.</p>
+          <div class="prompt-code">Você é criador de conteúdo educativo para redes sociais.
+
+Meu nicho: [NICHO]
+Tema: [ex: 5 apps para MEI / 7 dicas para vender mais no WhatsApp]
+Nível do público: [iniciante / intermediário]
+
+Crie roteiro de vídeo em formato de lista numerada (30–60 segundos).
+
+Inclua:
+- Gancho nos 3 primeiros segundos
+- Cada item da lista com explicação de 1 linha
+- Texto na tela para cada número
+- Legenda expandida (pode ler no post)
+- CTA: &quot;Salva pra não esquecer&quot;
+
+Tom: direto, útil, sem enrolação.</div>
+          
+        </article>
+            <div class="mod-page" data-num="02">
+              <p class="mod-idx">Parte 2</p>
+              <h2>Roteiros para vídeo</h2>
+              <p>Estruturas para Reels, TikTok e vídeos curtos.</p>
+            </div>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">09</span>
+            <h3 class="prompt-title">Antes e depois (45 segundos)</h3>
+          </div>
+          <p class="prompt-when">Para mostrar transformação do cliente ou do produto.</p>
+          <div class="prompt-code">Você é roteirista de Reels para negócios locais e prestadores de serviço.
+
+Meu nicho: [NICHO — ex: design de unhas, personal trainer, reforma]
+Transformação que mostro: [ANTES → DEPOIS]
+Público: [PERFIL]
+
+Crie roteiro de vídeo antes/depois de 45 segundos.
+
+Estrutura:
+1. Gancho (3s): mostrar o &quot;antes&quot; ou resultado chocante
+2. Contexto rápido do problema
+3. Processo resumido (pode ser em cortes rápidos)
+4. Revelação do depois
+5. CTA: agendar / comprar / chamar no WhatsApp
+
+Inclua texto na tela, sugestão de música e legenda com hashtags locais se aplicável.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">10</span>
+            <h3 class="prompt-title">Tutorial rápido (60 segundos)</h3>
+          </div>
+          <p class="prompt-when">Para ensinar algo prático em 1 minuto.</p>
+          <div class="prompt-code">Você é educador de conteúdo curto para TikTok.
+
+Meu nicho: [NICHO]
+O que vou ensinar: [TUTORIAL — ex: como embalar pedido, como fazer cotação]
+Público: [INICIANTE OU AVANÇADO]
+
+Crie roteiro de tutorial de 60 segundos.
+
+Formato:
+- Gancho: &quot;Em 60 segundos você aprende...&quot;
+- Passo 1, 2, 3 (máximo 5 passos)
+- Erro comum a evitar
+- CTA
+
+Inclua texto na tela para cada passo e legenda com resumo escrito.
+Tom: didático e rápido.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">11</span>
+            <h3 class="prompt-title">Storytelling pessoal</h3>
+          </div>
+          <p class="prompt-when">Para conectar emocionalmente e humanizar sua marca.</p>
+          <div class="prompt-code">Você é storyteller digital para empreendedores brasileiros.
+
+Minha história resumida: [COMO COMECEI / DESAFIO QUE SUPEREI]
+Meu negócio hoje: [O QUE FAÇO]
+Lição que quero passar: [MENSAGEM]
+
+Crie roteiro de Reels de 60–90 segundos em formato storytelling.
+
+Estrutura: situação inicial → conflito/problema → virada → lição → CTA suave
+
+Tom: autêntico, vulnerável mas profissional. Evite clichês de &quot;acordei às 4h&quot;.
+Inclua sugestões de texto na tela nos momentos emocionais.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">12</span>
+            <h3 class="prompt-title">Bastidores do negócio</h3>
+          </div>
+          <p class="prompt-when">Para mostrar processo, qualidade ou método de trabalho (não o seu dia pessoal).</p>
+          <div class="prompt-code">Você é criador de conteúdo de processo para pequenos negócios.
+
+Meu negócio: [NICHO]
+O que mostrar: [ex: embalagem, preparo, controle de qualidade, ferramentas, atendimento]
+Objetivo: [provar qualidade / gerar confiança / justificar preço]
+
+Crie roteiro de vídeo &quot;como eu faço [X]&quot; de 45 segundos — foco no PROCESSO, não na sua rotina pessoal.
+
+Inclua:
+- Gancho: &quot;Você já viu como [produto/serviço] é feito por aqui?&quot;
+- 4 cenas do processo (o que filmar em cada uma)
+- 1 detalhe que diferencia seu método
+- CTA para pedir orçamento ou comprar
+
+Tom: profissional, transparente. Sem narrativa de vida pessoal.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">13</span>
+            <h3 class="prompt-title">Prova social com depoimento</h3>
+          </div>
+          <p class="prompt-when">Quando um cliente elogiou e você quer transformar em vídeo.</p>
+          <div class="prompt-code">Você é copywriter de prova social para redes sociais.
+
+Depoimento do cliente (real ou baseado em feedback): &quot;[COLE AQUI]&quot;
+Meu serviço/produto: [O QUE VENDO]
+Nicho: [NICHO]
+
+Crie roteiro de Reels de 30–45 segundos usando esse depoimento.
+
+Formatos possíveis:
+- Tela com print do depoimento + sua reação
+- Você lendo o depoimento + B-roll do serviço
+- Antes/depois + depoimento em texto
+
+Inclua gancho, legenda e CTA (&quot;Quer resultado assim? Chama no link&quot;).</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">14</span>
+            <h3 class="prompt-title">Comparação sem atacar concorrente</h3>
+          </div>
+          <p class="prompt-when">Para se diferenciar educando o público sobre o que valorizar na compra.</p>
+          <div class="prompt-code">Você é estrategista de posicionamento para pequenos negócios.
+
+Meu nicho: [NICHO]
+Meu diferencial: [O QUE ME TORNA ÚNICO — sem citar nomes de concorrentes]
+O que o público compara na hora de comprar: [PREÇO, QUALIDADE, PRAZO, ETC.]
+
+Crie roteiro de vídeo &quot;Como escolher [serviço/produto] sem cair em cilada&quot; de 60 segundos.
+
+Regras:
+- Eduque, não ataque
+- Mostre critérios de escolha (onde você se destaca naturalmente)
+- Tom de consultor, não de vendedor desesperado
+
+Inclua legenda e CTA para salvar o vídeo.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">15</span>
+            <h3 class="prompt-title">Erro comum do meu público</h3>
+          </div>
+          <p class="prompt-when">Para educar e posicionar-se como autoridade.</p>
+          <div class="prompt-code">Você é especialista em conteúdo educativo para [NICHO].
+
+Erro que meu público comete: [DESCREVA O ERRO]
+Consequência desse erro: [O QUE ACONTECE]
+Como corrigir: [SUA SOLUÇÃO]
+
+Crie roteiro de Reels &quot;Pare de fazer isso se você...&quot; de 45 segundos.
+
+Estrutura: gancho com o erro → por que é problema → como fazer certo → CTA
+
+Tom: direto, um pouco provocativo, mas útil.
+Inclua texto na tela e 5 hashtags.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">16</span>
+            <h3 class="prompt-title">Apresentação de produto sem parecer propaganda</h3>
+          </div>
+          <p class="prompt-when">Para vender um produto específico de forma natural.</p>
+          <div class="prompt-code">Você é criador de conteúdo nativo para TikTok Shop e Instagram.
+
+Produto: [NOME E DESCRIÇÃO]
+Preço: [VALOR]
+Diferencial: [POR QUE COMPRAR COMIGO]
+Público: [QUEM COMPRA]
+
+Crie roteiro de vídeo de 45–60 segundos que vende sem parecer comercial chato.
+
+Formato sugerido: problema → descoberta do produto → demonstração → resultado → CTA
+
+Inclua:
+- Gancho nos 3 primeiros segundos
+- O que mostrar na câmera
+- Legenda com emoji moderado e link/CTA
+- 3 objeções respondidas na legenda (preço, qualidade, entrega)</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">17</span>
+            <h3 class="prompt-title">Dia na vida do empreendedor</h3>
+          </div>
+          <p class="prompt-when">Para conteúdo pessoal e identificação (sua rotina, não o processo do serviço).</p>
+          <div class="prompt-code">Você é roteirista de conteúdo lifestyle para empreendedores.
+
+Meu dia típico: [DESCREVA ROTINA — acordar, produzir, atender, família]
+Meu negócio: [NICHO]
+Momento pessoal marcante: [ALGO HUMANO — cansaço, conquista, aprendizado]
+
+Crie roteiro &quot;day in my life&quot; de 60–90 segundos — foco em VOCÊ como pessoa, não em tutorial do serviço.
+
+Inclua:
+- 5–7 cenas pessoais (café, deslocamento, pausa, etc.)
+- Texto na tela em momentos de identificação (&quot;quem mais...&quot;)
+- Legenda que convida comentário empático
+
+Tom: vulnerável e real. Não é vídeo de vendas — é conexão.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">18</span>
+            <h3 class="prompt-title">Reação a tendência do nicho</h3>
+          </div>
+          <p class="prompt-when">Quando surge notícia, mudança ou hype no seu mercado.</p>
+          <div class="prompt-code">Você é criador de conteúdo de opinião para [NICHO].
+
+Assunto em alta: [NOTÍCIA, TREND OU DEBATE DO SEU MERCADO]
+Minha posição: [O QUE PENSO — de forma equilibrada]
+Público: [PERFIL]
+
+Crie roteiro de vídeo de reação/comentário de 45–60 segundos.
+
+Estrutura:
+- Gancho: &quot;Você viu o que aconteceu com [X]?&quot;
+- Contexto em 2 frases
+- Sua opinião com argumento
+- O que isso muda para o cliente
+- CTA: comentar concordância ou discordância
+
+Tom: autoridade acessível, não arrogante.</div>
+          
+        </article>
+            <div class="mod-page" data-num="03">
+              <p class="mod-idx">Parte 3</p>
+              <h2>Legendas e copy</h2>
+              <p>Textos para feed, stories, bio e conversão.</p>
+            </div>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">19</span>
+            <h3 class="prompt-title">Legenda vendedora curta</h3>
+          </div>
+          <p class="prompt-when">Foto ou vídeo pronto, falta legenda que converte.</p>
+          <div class="prompt-code">Você é copywriter de Instagram e TikTok para pequenos negócios.
+
+Meu nicho: [NICHO]
+O que estou postando: [FOTO/VÍDEO — descreva]
+Oferta: [PRODUTO/SERVIÇO E PREÇO SE TIVER]
+Objetivo: [vender / agendar / clicar no link]
+
+Crie 3 opções de legenda curta (máximo 150 palavras cada).
+
+Cada legenda deve ter:
+- Primeira linha que prende (gancho)
+- Benefício claro
+- CTA direto
+- 5 hashtags de nicho (não genéricas)
+
+Tom: [informal / profissional / descontraído]
+Evite &quot;link na bio&quot; sem motivo para clicar.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">20</span>
+            <h3 class="prompt-title">Carrossel 5 slides educativo</h3>
+          </div>
+          <p class="prompt-when">Para post de carrossel no Instagram com conteúdo educativo.</p>
+          <div class="prompt-code">Você é designer de conteúdo para carrosséis de Instagram.
+
+Tema: [TEMA DO CARROSSEL]
+Nicho: [NICHO]
+Público: [PERFIL]
+
+Crie conteúdo para carrossel de 5 slides:
+
+Slide 1: Capa com título chamativo
+Slides 2–4: Conteúdo (1 ideia por slide, texto curto)
+Slide 5: CTA + resumo
+
+Para cada slide entregue:
+- Texto principal (máx. 20 palavras)
+- Texto de apoio (opcional)
+- Sugestão visual (o que colocar de imagem)
+
+Inclua legenda do post e hashtags.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">21</span>
+            <h3 class="prompt-title">Bio otimizada Instagram/TikTok</h3>
+          </div>
+          <p class="prompt-when">Perfil novo ou bio que não explica o que você vende.</p>
+          <div class="prompt-code">Você é especialista em otimização de perfil para conversão.
+
+Meu negócio: [NICHO]
+O que vendo: [PRODUTO/SERVIÇO]
+Público: [CLIENTE IDEAL]
+Diferencial: [POR QUE ME ESCOLHER]
+Link principal: [WHATSAPP / SITE / CAKTO — descreva destino]
+
+Crie 3 opções de bio para Instagram e TikTok (máx. 150 caracteres cada).
+
+Cada bio deve ter:
+- O que você faz (claro em 1 linha)
+- Para quem
+- Prova ou diferencial
+- CTA
+
+Inclua sugestão de nome de usuário e destaques (stories) para organizar o perfil.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">22</span>
+            <h3 class="prompt-title">CTA para WhatsApp</h3>
+          </div>
+          <p class="prompt-when">Quando quer levar o público para conversa privada.</p>
+          <div class="prompt-code">Você é copywriter de conversão para WhatsApp.
+
+Meu negócio: [NICHO]
+Oferta: [O QUE VENDO]
+Motivo para chamar agora: [URGÊNCIA OU BENEFÍCIO]
+
+Crie 5 CTAs diferentes para final de Reels, Stories e legendas.
+
+Formatos:
+- &quot;Chama no WhatsApp que...&quot;
+- &quot;Comenta [PALAVRA] que eu mando...&quot;
+- &quot;Link na bio&quot; com motivo forte
+- Oferta exclusiva para quem chamar
+- Pergunta que gera DM
+
+Inclua mensagem automática de boas-vindas para quem chegar no WhatsApp (2–3 linhas).</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">23</span>
+            <h3 class="prompt-title">Legenda com storytelling</h3>
+          </div>
+          <p class="prompt-when">Quando legenda genérica não gera conexão.</p>
+          <div class="prompt-code">Você é storyteller para legendas de Instagram.
+
+História para contar: [FATO REAL — cliente, seu dia, bastidor, aprendizado]
+Conexão com minha oferta: [COMO LIGA COM O QUE VENDO]
+Tom: [emocional / inspirador / leve]
+
+Escreva legenda de storytelling (200–300 palavras).
+
+Estrutura:
+- Abertura que prende (situação ou frase forte)
+- Desenvolvimento curto
+- Lição ou virada
+- CTA natural (não forçado)
+
+Inclua quebra de linha para leitura no celular e 5 hashtags.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">24</span>
+            <h3 class="prompt-title">Texto para capa de destaque (Stories)</h3>
+          </div>
+          <p class="prompt-when">Para organizar destaques do Instagram de forma profissional.</p>
+          <div class="prompt-code">Você é organizador de perfil Instagram para negócios.
+
+Meu nicho: [NICHO]
+Destaques que preciso: [ex: Serviços, Preços, Depoimentos, Bastidores, Promoções]
+
+Para cada destaque, crie:
+- Nome curto (1–2 palavras)
+- Texto para capa
+- Lista de 3–5 stories que devo colocar dentro (tema de cada um)
+
+Tom visual: limpo, profissional, fácil de entender em 2 segundos.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">25</span>
+            <h3 class="prompt-title">Legenda para foto estática</h3>
+          </div>
+          <p class="prompt-when">Foto boa no feed, legenda travada.</p>
+          <div class="prompt-code">Você é copywriter de feed Instagram.
+
+Descrição da foto: [O QUE APARECE NA IMAGEM]
+Meu nicho: [NICHO]
+Objetivo: [engajar / vender / informar]
+
+Crie legenda para foto estática com:
+- Gancho na primeira frase
+- Corpo curto (3–5 linhas)
+- Pergunta para gerar comentários
+- CTA
+- 8 hashtags (mix de nicho + médio alcance)
+
+Tom: [defina]
+Máximo 200 palavras.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">26</span>
+            <h3 class="prompt-title">Copy para sequência de Stories</h3>
+          </div>
+          <p class="prompt-when">Stories sem narrativa ou sequência que não vende.</p>
+          <div class="prompt-code">Você é especialista em sequências de Stories que convertem.
+
+Meu objetivo: [vender X / divulgar promoção / captar leads]
+Oferta: [DETALHES]
+Nicho: [NICHO]
+
+Crie sequência de 5 Stories:
+
+Story 1: Gancho/curiosidade
+Story 2: Problema ou contexto
+Story 3: Solução/oferta
+Story 4: Prova ou urgência
+Story 5: CTA com link ou &quot;responde aqui&quot;
+
+Para cada story: texto na tela + o que falar (se for vídeo) + sticker sugerido (enquete, pergunta, link).</div>
+          
+        </article>
+            <div class="mod-page" data-num="04">
+              <p class="mod-idx">Parte 4</p>
+              <h2>Conteúdo educativo</h2>
+              <p>Autoridade, FAQ e materiais de valor.</p>
+            </div>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">27</span>
+            <h3 class="prompt-title">Mitos vs verdades</h3>
+          </div>
+          <p class="prompt-when">Público tem crenças erradas sobre seu mercado.</p>
+          <div class="prompt-code">Você é educador de conteúdo para [NICHO].
+
+Liste 5 mitos comuns que meu público acredita e a verdade por trás de cada um.
+
+Para cada mito:
+- O mito (frase curta)
+- A verdade (explicação em 2 linhas)
+- Como posso usar isso em um Reels de 30 segundos
+
+Tom: educativo, sem humilhar quem acreditou no mito.
+Inclua roteiro resumido do vídeo &quot;5 mitos sobre [TEMA]&quot; e legenda.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">28</span>
+            <h3 class="prompt-title">3 erros que meu cliente comete</h3>
+          </div>
+          <p class="prompt-when">Para posicionar autoridade e abrir conversa de venda.</p>
+          <div class="prompt-code">Você é consultor de [NICHO].
+
+Os 3 erros mais comuns do meu cliente: [LISTE OU PEÇA PARA A IA SUGERIR COM BASE NO NICHO]
+Como eu ajudo a corrigir: [SUA SOLUÇÃO]
+
+Crie roteiro de Reels &quot;3 erros que impedem você de [RESULTADO DESEJADO]&quot; — 60 segundos.
+
+Para cada erro: nome do erro → consequência → dica rápida
+
+Tom: consultor amigo, não professor arrogante.
+CTA: &quot;Salva esse vídeo&quot; ou &quot;Comenta qual erro você já cometeu&quot;.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">29</span>
+            <h3 class="prompt-title">Dica rápida do dia</h3>
+          </div>
+          <p class="prompt-when">Conteúdo leve para manter presença diária.</p>
+          <div class="prompt-code">Você é criador de microconteúdo diário.
+
+Meu nicho: [NICHO]
+Dica de hoje sobre: [TEMA]
+Público: [PERFIL]
+
+Crie conteúdo &quot;dica do dia&quot; para Stories ou Reels de 15–30 segundos.
+
+Inclua:
+- Uma frase de gancho
+- A dica em linguagem simples (máx. 3 frases)
+- Texto na tela
+- Legenda curta com emoji moderado
+
+Gere 3 variações da mesma dica para eu postar na semana.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">30</span>
+            <h3 class="prompt-title">FAQ em formato de post</h3>
+          </div>
+          <p class="prompt-when">Mesmas perguntas repetidas nas DMs.</p>
+          <div class="prompt-code">Você é atendente e copywriter para [NICHO].
+
+Perguntas frequentes que recebo:
+1. [PERGUNTA 1]
+2. [PERGUNTA 2]
+3. [PERGUNTA 3]
+4. [PERGUNTA 4]
+5. [PERGUNTA 5]
+
+Transforme em:
+A) Roteiro de vídeo FAQ (60s — responde as 5 rapidamente)
+B) Legenda de carrossel (1 pergunta por slide)
+C) Texto para destaque &quot;Perguntas Frequentes&quot;
+
+Tom: claro, paciente, profissional.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">31</span>
+            <h3 class="prompt-title">Checklist educativo (conteúdo salvável)</h3>
+          </div>
+          <p class="prompt-when">Para gerar salvamentos e compartilhamentos.</p>
+          <div class="prompt-code">Você é criador de checklists virais para Instagram.
+
+Tema do checklist: [ex: Checklist antes de abrir o MEI / Checklist pedido perfeito]
+Nicho: [NICHO]
+Público: [PERFIL]
+
+Crie checklist de [7 ou 10] itens.
+
+Para cada item: título curto + 1 linha de explicação
+
+Formatos de entrega:
+1. Texto para carrossel (1 item por slide)
+2. Roteiro de vídeo apresentando o checklist
+3. Legenda com CTA &quot;Salva pra consultar depois&quot;
+
+Tom: prático, acionável.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">32</span>
+            <h3 class="prompt-title">Comparativo de opções (ajudar a decidir)</h3>
+          </div>
+          <p class="prompt-when">Cliente indeciso entre opções do seu mercado.</p>
+          <div class="prompt-code">Você é consultor imparcial de [NICHO].
+
+Opções a comparar: [A vs B vs C — ex: tipos de produto, planos, materiais]
+Público: [QUEM DECIDE]
+Minha recomendação (sutil): [QUAL OPÇÃO VOCÊ VENDE E POR QUÊ]
+
+Crie conteúdo comparativo educativo (não parecer panfleto).
+
+Formato: tabela simples + roteiro de vídeo 60s
+Critérios de comparação: preço, qualidade, praticidade, resultado
+
+Tom: honesto, consultivo. Se uma opção não serve, diga.
+CTA: &quot;Dúvida qual escolher? Comenta aqui&quot;.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">33</span>
+            <h3 class="prompt-title">Passo a passo numerado</h3>
+          </div>
+          <p class="prompt-when">Explicar processo que parece complexo.</p>
+          <div class="prompt-code">Você é instrutor de processos para [NICHO].
+
+Processo que vou ensinar: [ex: Como fazer pedido / Como funciona minha consultoria]
+Público: iniciante
+Número de passos: [5 a 7]
+
+Crie:
+1. Passo a passo numerado (título + 2 linhas cada)
+2. Roteiro de Reels explicando os passos em 60–90 segundos
+3. Legenda resumida para fixar no post
+
+Tom: simples, como se explicasse para um amigo.
+Evite jargões técnicos.</div>
+          
+        </article>
+            <div class="mod-page" data-num="05">
+              <p class="mod-idx">Parte 5</p>
+              <h2>Vendas e conversão</h2>
+              <p>Ofertas, follow-up e objeções.</p>
+            </div>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">34</span>
+            <h3 class="prompt-title">Oferta relâmpago 24h</h3>
+          </div>
+          <p class="prompt-when">Precisa de vendas rápidas com urgência real.</p>
+          <div class="prompt-code">Você é copywriter de ofertas urgentes para pequenos negócios.
+
+Produto/serviço: [NOME]
+Preço normal: [R$]
+Preço promocional: [R$]
+Prazo: 24 horas
+Motivo da promoção: [ESTOQUE / DATA / LANÇAMENTO — seja honesto]
+Nicho: [NICHO]
+
+Crie campanha completa:
+
+1. Roteiro de Reels anunciando a oferta (30s)
+2. Sequência de 3 Stories
+3. Legenda para feed
+4. Mensagem para WhatsApp (broadcast)
+5. Texto de urgência sem ser apelativo mentiroso
+
+Tom: urgente mas confiável.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">35</span>
+            <h3 class="prompt-title">Texto de depoimento para repost</h3>
+          </div>
+          <p class="prompt-when">Cliente mandou elogio informal e você quer formatar para postar.</p>
+          <div class="prompt-code">Você é editor de prova social.
+
+Mensagem original do cliente: &quot;[COLE AQUI — pode estar informal]&quot;
+Meu serviço: [O QUE FIZ PRA ELE]
+
+Transforme em:
+1. Depoimento formatado para imagem (quote card) — 2–3 frases
+2. Legenda para repost no feed
+3. Roteiro de Stories reagindo ao depoimento
+4. Versão curta para bio ou destaque
+
+Mantenha autenticidade — não invente elogios que não existem.
+Peça permissão ao cliente antes de postar (adicione nota no final).</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">36</span>
+            <h3 class="prompt-title">DM de follow-up</h3>
+          </div>
+          <p class="prompt-when">Lead parou de responder depois de demonstrar interesse.</p>
+          <div class="prompt-code">Você é vendedor consultivo por WhatsApp/Instagram DM.
+
+Contexto: [O QUE A PESSOA PERGUNTOU / ONDE PAROU]
+Minha oferta: [PRODUTO/SERVIÇO E PREÇO]
+Objeção provável: [PREÇO / TEMPO / DÚVIDA]
+
+Crie 3 mensagens de follow-up (uma por dia, tom crescente).
+
+Regras:
+- Curta (máx. 4 linhas cada)
+- Não ser insistente ou desesperado
+- Trazer valor (dica, FAQ, prova social) antes de pedir venda
+- Última mensagem: porta aberta sem pressão
+
+Tom: humano, prestativo.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">37</span>
+            <h3 class="prompt-title">Quebra de objeção &quot;tá caro&quot;</h3>
+          </div>
+          <p class="prompt-when">Cliente diz que preço está alto.</p>
+          <div class="prompt-code">Você é copywriter de objeções para [NICHO].
+
+Meu produto/serviço: [NOME]
+Preço: [R$]
+Valor entregue: [BENEFÍCIOS REAIS]
+Público: [PERFIL]
+
+Crie respostas para &quot;tá caro&quot; em 4 formatos:
+
+1. Mensagem de DM (curta)
+2. Roteiro de Reels educando sobre valor vs preço (45s)
+3. Legenda de post &quot;Por que custa X&quot;
+4. Analogia simples que explica o valor (1 parágrafo)
+
+Tom: empático, nunca defensivo.
+Não diminua o cliente por achar caro.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">38</span>
+            <h3 class="prompt-title">Anúncio de vaga limitada</h3>
+          </div>
+          <p class="prompt-when">Serviço com vagas limitadas (consultoria, turma, agenda).</p>
+          <div class="prompt-code">Você é copywriter de escassez ética.
+
+Serviço: [NOME — ex: mentoria, agenda do mês, turma]
+Vagas: [NÚMERO]
+Prazo: [DATA LIMITE]
+O que inclui: [ENTREGÁVEIS]
+Investimento: [R$]
+
+Crie anúncio de vagas limitadas:
+
+1. Roteiro de Reels (30–45s)
+2. Legenda com bullet points do que está incluso
+3. Stories de contagem (ex: &quot;Restam X vagas&quot;)
+4. CTA para lista de espera se esgotar
+
+Regras: escassez deve ser REAL. Não invente vagas falsas.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">39</span>
+            <h3 class="prompt-title">Script de live de vendas</h3>
+          </div>
+          <p class="prompt-when">Vai fazer live no TikTok ou Instagram para vender.</p>
+          <div class="prompt-code">Você é roteirista de live commerce para pequenos negócios.
+
+Produto/serviço: [NOME]
+Preço e condição especial na live: [OFERTA]
+Duração da live: [30 / 60 / 90 minutos]
+Nicho: [NICHO]
+
+Crie roteiro de live com:
+
+- Abertura (5 min): gancho e regras
+- Conteúdo de valor (15 min): dica relacionada ao produto
+- Apresentação da oferta (10 min): benefícios, prova social, preço
+- Q&amp;A (10 min): perguntas frequentes
+- Fechamento (5 min): urgência e CTA
+
+Inclua frases para responder comentários em tempo real.
+Tom: conversa ao vivo, não telemarketing.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">40</span>
+            <h3 class="prompt-title">Recuperação de contato (quase comprou)</h3>
+          </div>
+          <p class="prompt-when">Pessoa pediu orçamento ou foi ao checkout e sumiu.</p>
+          <div class="prompt-code">Você é especialista em recuperação de vendas por mensagem.
+
+Situação: [PEDIU ORÇAMENTO / ABANDONOU CARRINHO / DISSE QUE IA PENSAR]
+Produto: [NOME E PREÇO]
+Tempo desde último contato: [DIAS]
+
+Crie sequência de 2 mensagens de recuperação:
+
+Mensagem 1: lembrete amigável + valor extra (dica ou bônus)
+Mensagem 2: última chance ou pergunta aberta (&quot;Posso ajudar em algo?&quot;)
+
+Tom: leve, sem culpar. Máx. 5 linhas cada.
+Opcional: oferta de incentivo pequeno (frete, brinde) se fizer sentido.</div>
+          
+        </article>
+            <div class="mod-page" data-num="06">
+              <p class="mod-idx">Parte 6</p>
+              <h2>Organização</h2>
+              <p>Planejamento e rotina de produção.</p>
+            </div>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">41</span>
+            <h3 class="prompt-title">Calendário semanal de conteúdo</h3>
+          </div>
+          <p class="prompt-when">Início da semana — transforma o Anexo A (calendário 30 dias) em plano executável.</p>
+          <div class="prompt-code">Você é planejador de conteúdo para pequenos negócios.
+
+Meu nicho: [NICHO]
+Frequência: [ex: 1 Reels/dia, 3x/semana]
+Objetivo da semana: [vender / crescer / engajar]
+Tema do Anexo A para esta semana: [COPIE O TEMA DOS PRÓXIMOS 7 DIAS DO CALENDÁRIO]
+
+Monte calendário executável para 7 dias (segunda a domingo).
+
+Para cada dia:
+- Formato (Reels, Stories, carrossel)
+- Título/gancho específico do meu nicho
+- Objetivo (educar, vender, entreter)
+- CTA
+
+Não invente temas genéricos — derive do calendário de 30 dias que forneci.
+Equilibre: 40% educativo, 30% identificação, 30% venda/prova social.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">42</span>
+            <h3 class="prompt-title">Brainstorm 30 ideias em 10 minutos</h3>
+          </div>
+          <p class="prompt-when">Bloqueio criativo total — precisa de volume bruto, não de calendário.</p>
+          <div class="prompt-code">Você é gerador de ideias em volume para [NICHO].
+
+Meu negócio: [DESCREVA]
+Público: [PERFIL]
+Restrição: [ex: só com celular / sem aparecer / orçamento zero]
+
+Gere 30 TÍTULOS de conteúdo em 3 blocos (10 cada):
+- Educativo (ensina algo)
+- Identificação (público se vê)
+- Comercial (leva à venda)
+
+Formato: só título + tipo (Reels/carrossel/Story) em 1 linha cada.
+NÃO monte calendário. NÃO escreva roteiro. Só lista rápida para eu escolher.
+
+Depois da lista, indique quais 5 têm maior chance de salvar/compartilhar.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">43</span>
+            <h3 class="prompt-title">Análise do que postar esta semana</h3>
+          </div>
+          <p class="prompt-when">Muitas ideias, não sabe priorizar.</p>
+          <div class="prompt-code">Você é estrategista de conteúdo.
+
+Meu nicho: [NICHO]
+Ideias que tenho: [LISTE 5–10 IDEIAS]
+Meta da semana: [SEGUIDORES / VENDAS / ENGAJAMENTO]
+O que funcionou recentemente: [VÍDEOS COM MAIS VIEWS OU VENDAS]
+
+Analise minhas ideias e:
+1. Priorize top 5 para esta semana (com justificativa)
+2. Diga qual descartar ou deixar para depois
+3. Sugira ordem de postagem (qual dia postar o quê)
+4. Indique 1 ideia &quot;arriscada&quot; que pode viralizar
+
+Baseie-se em equilíbrio de funil: topo (alcance), meio (autoridade), fundo (venda).</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">44</span>
+            <h3 class="prompt-title">Reaproveitar 1 conteúdo em 5 formatos</h3>
+          </div>
+          <p class="prompt-when">Produziu conteúdo bom e quer extrair máximo sem retrabalho.</p>
+          <div class="prompt-code">Você é especialista em repurposing de conteúdo.
+
+Conteúdo original: [DESCREVA O VÍDEO/POST QUE JÁ FEZ OU A IDEIA]
+Nicho: [NICHO]
+
+Transforme em 5 peças diferentes:
+
+1. Reels/TikTok (roteiro resumido)
+2. Carrossel Instagram (5 slides)
+3. Sequência de 3 Stories
+4. Legenda longa para feed
+5. Thread ou post curto estilo &quot;dica rápida&quot;
+
+Mantenha a mensagem central, mude o formato.
+Indique ordem de publicação para não cansar o público.</div>
+          
+        </article>
+        <article class="prompt">
+          <div class="prompt-top">
+            <span class="prompt-num">45</span>
+            <h3 class="prompt-title">Rotina de criação em 1 hora/dia</h3>
+          </div>
+          <p class="prompt-when">Conteúdo consome o dia inteiro.</p>
+          <div class="prompt-code">Você é consultor de produtividade para criadores de conteúdo.
+
+Meu negócio: [NICHO]
+Tempo disponível por dia: 1 hora
+Frequência desejada: [ex: 1 Reels/dia + Stories]
+Ferramentas que uso: [Canva, CapCut, ChatGPT, etc.]
+
+Monte rotina diária de 60 minutos para criar e publicar conteúdo.
+
+Divida em blocos com tempo:
+- Planejamento
+- Gravação
+- Edição
+- Legenda (com IA)
+- Publicação
+
+Inclua batching: como gravar 3 vídeos de uma vez na semana.
+Seja realista para quem empreende sozinho.</div>
+          
+        </article></div>
+
+<div class="mod-page" data-num="A">
+  <p class="mod-idx">Anexo A</p>
+  <h2>Calendário de 30 dias</h2>
+  <p>Temas diários para manter consistência sem reinventar a roda toda semana.</p>
+  <p class="page-lead" style="margin-top:12px;font-size:13px">Nota: a numeração dos dias é independente da numeração dos comandos da biblioteca.</p>
+</div>
+<div class="annex-wrap"><div class="week"><p class="week-label">Semana 1</p><h3 class="week-title">Apresentação e autoridade</h3><div class="table-wrap"><table><tr><th>Dia</th><th>Tema</th><th>Formato sugerido</th><th>Objetivo</th></tr><tr><td>1</td><td>Quem sou e o que faço (em 30 segundos)</td><td>Reels</td><td>Apresentação</td></tr><tr><td>2</td><td>Bastidores do meu trabalho</td><td>Reels/Stories</td><td>Humanizar</td></tr><tr><td>3</td><td>3 mitos do meu mercado</td><td>Carrossel ou Reels</td><td>Educar</td></tr><tr><td>4</td><td>Depoimento de cliente (real)</td><td>Reels com print</td><td>Prova social</td></tr><tr><td>5</td><td>Pergunta polêmica do nicho</td><td>Reels opinião</td><td>Engajamento</td></tr><tr><td>6</td><td>Tutorial rápido (dica prática)</td><td>Reels 60s</td><td>Salvar</td></tr><tr><td>7</td><td>Resumo da semana + CTA</td><td>Stories</td><td>Vender/agendar</td></tr></table></div></div><div class="week"><p class="week-label">Semana 2</p><h3 class="week-title">Educação e salvamentos</h3><div class="table-wrap"><table><tr><th>Dia</th><th>Tema</th><th>Formato sugerido</th><th>Objetivo</th></tr><tr><td>8</td><td>5 erros que meu cliente comete</td><td>Carrossel</td><td>Salvar</td></tr><tr><td>9</td><td>Antes e depois (transformação)</td><td>Reels</td><td>Desejo</td></tr><tr><td>10</td><td>FAQ: pergunta mais frequente</td><td>Reels resposta</td><td>Autoridade</td></tr><tr><td>11</td><td>Ferramenta/app que uso no negócio</td><td>Reels</td><td>Utilidade</td></tr><tr><td>12</td><td>Dia difícil / aprendizado real</td><td>Reels storytelling</td><td>Conexão</td></tr><tr><td>13</td><td>Comparativo: opção A vs B</td><td>Carrossel</td><td>Educar</td></tr><tr><td>14</td><td>Enquete: o que vocês querem ver?</td><td>Stories</td><td>Pesquisa</td></tr></table></div></div><div class="week"><p class="week-label">Semana 3</p><h3 class="week-title">Vendas suaves</h3><div class="table-wrap"><table><tr><th>Dia</th><th>Tema</th><th>Formato sugerido</th><th>Objetivo</th></tr><tr><td>15</td><td>Como funciona meu serviço (passo a passo)</td><td>Reels</td><td>Clarificar</td></tr><tr><td>16</td><td>Prova social: print de elogio</td><td>Feed + legenda</td><td>Confiança</td></tr><tr><td>17</td><td>Objeção: &quot;por que custa X?&quot;</td><td>Reels</td><td>Quebrar objeção</td></tr><tr><td>18</td><td>Oferta da semana (se houver)</td><td>Reels + Stories</td><td>Vender</td></tr><tr><td>19</td><td>Unboxing ou mostra do produto</td><td>Reels</td><td>Demonstrar</td></tr><tr><td>20</td><td>Cliente ideal vs cliente que não atendo</td><td>Reels</td><td>Qualificar</td></tr><tr><td>21</td><td>CTA forte: chama no WhatsApp</td><td>Reels</td><td>Conversão</td></tr></table></div></div><div class="week"><p class="week-label">Semana 4</p><h3 class="week-title">Engajamento e crescimento</h3><div class="table-wrap"><table><tr><th>Dia</th><th>Tema</th><th>Formato sugerido</th><th>Objetivo</th></tr><tr><td>22</td><td>Trend adaptada ao meu nicho</td><td>Reels</td><td>Alcance</td></tr><tr><td>23</td><td>POV: situação que meu cliente vive</td><td>Reels</td><td>Identificação</td></tr><tr><td>24</td><td>Lista: 7 dicas rápidas</td><td>Reels ou carrossel</td><td>Salvar</td></tr><tr><td>25</td><td>Colaboração ou marcação de parceiro</td><td>Reels</td><td>Alcance</td></tr><tr><td>26</td><td>Respondendo comentário em vídeo</td><td>Reels</td><td>Engajamento</td></tr><tr><td>27</td><td>Rotina matinal/noite do empreendedor</td><td>Reels</td><td>Identificação</td></tr><tr><td>28</td><td>Conteúdo de gratidão / retrospectiva</td><td>Reels</td><td>Conexão</td></tr><tr><td>29</td><td>Preparação para o mês seguinte</td><td>Stories</td><td>Planejamento</td></tr><tr><td>30</td><td>Meta + convite para seguir/compartilhar</td><td>Reels</td><td>Crescimento</td></tr></table></div></div></div>
+
+<div class="mod-page" data-num="B">
+  <p class="mod-idx">Anexo B</p>
+  <h2>Revisar antes de publicar</h2>
+  <p>Checklist para o texto ficar com a cara da sua marca, não genérico.</p>
+</div>
+<div class="annex-wrap"><div class="guia-block"><h3>Diagnóstico: por que o texto parece genérico</h3><p>Ferramentas de IA produzem saídas amplas quando o contexto de entrada é insuficiente. Campos como `[NICHO]`, `[PÚBLICO]` e `[PRODUTO]` devem ser preenchidos com dados específicos antes da execução.</p><p><strong>Requisito mínimo:</strong> incluir três elementos de contexto — posicionamento da marca, exemplo real do negócio e restrições editoriais (tom, termos proibidos, limites de promessa).</p><p>---</p></div><div class="guia-block"><h3>Protocolo de revisão em 5 etapas</h3><p>### 1. Validação de entrada
+Confirmar que todos os campos entre colchetes foram substituídos por dados reais. Entradas incompletas geram saídas padronizadas.</p><p>### 2. Reescrita de tom
+Aplicar o comando de revisão abaixo para alinhar o texto ao padrão comunicacional da marca.</p><p>### 3. Edição de redundância
+Eliminar repetições e frases de preenchimento. Redução de 15–20% no volume textual é recomendada.</p><p>### 4. Inclusão de evidência
+Inserir um dado concreto: métrica, caso, prazo ou especificação do serviço. Conteúdo com evidência apresenta maior taxa de conversão.</p><p>### 5. Leitura em voz alta
+Textos que apresentam hesitação na leitura oral devem ser simplificados antes da publicação.</p><p>---</p></div><div class="guia-block"><h3>Expressões a evitar</h3><div class="table-wrap"><table><tr><th>Evitar</th><th>Substituir por</th></tr><tr><td>&quot;No mundo digital de hoje...&quot;</td><td>Entrada direta no assunto</td></tr><tr><td>&quot;Oportunidade única&quot;</td><td>Prazo ou condição específica</td></tr><tr><td>&quot;Transforme sua vida&quot;</td><td>Benefício mensurável</td></tr><tr><td>Excesso de emojis</td><td>Máximo 1–2 por peça, se aplicável ao canal</td></tr></table></div></div><div class="guia-block"><h3>Comando auxiliar — revisão de tom</h3><p>```
+Atue como editor sênior de conteúdo corporativo.</p><p>Reescreva o texto abaixo conforme:
+- Tom: [formal / consultivo / direto]
+- Máximo: [X] palavras
+- Remover clichês de marketing digital
+- Manter CTA e hashtags</p><p>Texto:
+[COLE AQUI]
+```</p><p>---</p></div><div class="guia-block"><h3>Checklist pré-publicação</h3><ul class="checks"><li>Campos do comando preenchidos integralmente</li><li>Leitura em voz alta realizada</li><li>Clichês removidos</li><li>Dado concreto do negócio incluído</li><li>CTA verificado</li><li>Promessas compatíveis com a realidade da oferta</li></ul></div></div>
+
+<div class="end">
+  <h2>Por onde começar</h2>
+  <p class="end-lead">Se estiver em dúvida, teste os comandos 7 (hook), 19 (legenda vendedora) e 41 (calendário semanal) — cobrem gancho, legenda e planejamento da semana.</p>
+  <ul class="end-items">
+    <li>Execute três comandos com dados reais do seu negócio</li>
+    <li>Use o Anexo A para montar o mês</li>
+    <li>Publique uma peça revisada pelo Anexo B</li>
+  </ul>
+  <p class="end-footer">Conteúdo Infinito · Guia de comandos para redes sociais</p>
+</div>
+
+</body>
+</html>

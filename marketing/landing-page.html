@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conteúdo Infinito — Sistema de produção de conteúdo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fdfcfa; --surface: #fff; --ink: #1a1a1a;
+      --muted: #6b6560; --light: #9c9690; --line: #e8e4df; --accent: #d4622a;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 0 24px 80px; }
+
+    .hero { padding: 64px 0 48px; }
+    .line { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 24px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    h1 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(34px, 8vw, 48px); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 18px; }
+    .hero-lead { font-size: 17px; color: var(--muted); max-width: 520px; line-height: 1.6; margin-bottom: 28px; }
+    .hero-lead strong { color: var(--ink); font-weight: 600; }
+    .hero-stats {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+    }
+
+    .pillars { display: grid; gap: 12px; margin-top: 8px; }
+    .pillar {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start;
+    }
+    .pillar-icon {
+      width: 40px; height: 40px; border-radius: 10px; background: #fef3ec;
+      color: var(--accent); font-weight: 700; font-size: 13px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .pillar h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .pillar p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-top: 16px; }
+    .card h2 { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 400; margin-bottom: 16px; }
+    .muted-note { font-size: 13px; color: var(--light); margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .compare { grid-template-columns: 1fr; } }
+    .compare-box { padding: 16px; border-radius: 12px; font-size: 13px; }
+    .compare-bad { background: #fafafa; color: var(--light); border: 1px dashed var(--line); }
+    .compare-good { background: #fef3ec; border: 1px solid #f5d5c0; color: var(--ink); }
+    .compare-box strong { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+
+    .pricing {
+      margin-top: 16px; text-align: center; padding: 36px 28px;
+      background: var(--ink); color: #fff; border-radius: 20px; position: relative;
+    }
+    .pricing .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .pricing h2 { font-family: 'Fraunces', Georgia, serif; color: #fff; font-size: 22px; margin-bottom: 4px; }
+    .price-old { text-decoration: line-through; color: rgba(255,255,255,0.4); font-size: 15px; }
+    .price { font-family: 'Fraunces', Georgia, serif; font-size: 52px; font-weight: 300; margin: 6px 0; }
+    .price-note { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+    .cta {
+      display: inline-block; background: var(--accent); color: #fff !important;
+      text-decoration: none; font-size: 15px; font-weight: 600;
+      padding: 16px 40px; border-radius: 100px;
+    }
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+    details:last-of-type { border-bottom: none; }
+    summary {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 15px;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details p { margin-top: 10px; font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    .guarantee-note {
+      text-align: center;
+      margin-top: 16px;
+      padding: 18px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      font-size: 13px;
+      color: var(--light);
+      line-height: 1.5;
+    }
+
+    footer { text-align: center; padding-top: 40px; font-size: 13px; color: var(--light); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="line"></div>
+      <p class="eyebrow">Sistema de produção de conteúdo</p>
+      <h1>Poste com consistência sem ficar olhando a tela em branco</h1>
+      <p class="hero-lead">
+        Não é mais um pack de prompts. É um <strong>sistema</strong>: calendário de 30 dias,
+        checklist para o texto não parecer genérico, e comandos separados por situação
+        (vender, educar, planejar).
+      </p>
+      <p class="hero-stats">30 dias · 1 checklist · 6 situações do funil</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">30</div>
+          <div>
+            <h3>Calendário editorial pronto</h3>
+            <p>Um tema por dia durante 30 dias. Você não decide o assunto — só executa.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✓</div>
+          <div>
+            <h3>Checklist anti-genérico</h3>
+            <p>Protocolo de revisão antes de publicar. A IA entrega rascunho; você entrega conteúdo com a sua cara.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">6</div>
+          <div>
+            <h3>Comandos por situação</h3>
+            <p>Precisa de legenda? Roteiro? Follow-up no WhatsApp? Abre a seção certa — não um prompt genérico.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="card">
+      <h2>Por que isso não é commodity</h2>
+      <div class="compare">
+        <div class="compare-box compare-bad">
+          <strong>Pack comum</strong>
+          Prompts soltos em PDF feio. Você copia, recebe texto genérico, não sabe o que postar segunda-feira.
+        </div>
+        <div class="compare-box compare-good">
+          <strong>Conteúdo Infinito</strong>
+          Calendário + checklist + biblioteca por objetivo. Processo de segunda a domingo, não lista solta.
+        </div>
+      </div>
+      <p class="muted-note">6 situações do funil (gancho, vídeo, legenda, educação, venda, planejamento). Compatível com ChatGPT gratuito.</p>
+    </div>
+
+    <div class="card pricing">
+      <p class="eyebrow">Lançamento</p>
+      <h2>Acesso imediato ao sistema completo</h2>
+      <p class="price-old">R$ 47</p>
+      <p class="price">R$ 27</p>
+      <p class="price-note">Pix · PDF profissional no e-mail em minutos</p>
+      <a class="cta" href="https://pay.cakto.com.br/37c4vf7_933986">Quero o sistema — R$ 27</a>
+    </div>
+
+    <div class="card">
+      <h2>Dúvidas</h2>
+      <details>
+        <summary>Preciso pagar o ChatGPT?</summary>
+        <p>Não. Os comandos funcionam na versão gratuita do ChatGPT, Gemini ou Claude.</p>
+      </details>
+      <details>
+        <summary>Serve pro meu negócio?</summary>
+        <p>Sim. O calendário é adaptável e os comandos têm campos para você preencher seu nicho — confeitaria, beleza, loja, consultoria, serviço local, etc.</p>
+      </details>
+      <details>
+        <summary>Como recebo?</summary>
+        <p>PDF no e-mail logo após a confirmação do pagamento.</p>
+      </details>
+      <details>
+        <summary>Tem garantia?</summary>
+        <p>7 dias. Não gostou? Reembolso pelo suporte da compra.</p>
+      </details>
+      <details>
+        <summary>O que exatamente eu recebo?</summary>
+        <p>Um PDF com calendário de 30 dias, checklist de revisão anti-genérico e biblioteca de comandos por situação — gancho, roteiro, legenda, venda e planejamento.</p>
+      </details>
+      <details>
+        <summary>Isso é só mais um pack de prompts?</summary>
+        <p>O mercado está saturado. O diferencial aqui é o processo — calendário + checklist + comandos situacionais em PDF bem apresentado.</p>
+      </details>
+    </div>
+
+    <div class="guarantee-note">
+      Pagamento seguro via Cakto · Pix, cartão e boleto<br>
+      Garantia de 7 dias · Entrega automática
+    </div>
+
+    <footer>Conteúdo Infinito · sistema de produção de conteúdo para redes sociais</footer>
+  </div>
+</body>
+</html>
